@@ -38,7 +38,7 @@ export const getProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewa
     })
     .promise();
 
-  if (output.Item) {
+  if (!output.Item) {
     return {
       statusCode: 404,
       body: JSON.stringify({ error: "not found" }),
