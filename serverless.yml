@@ -95,7 +95,7 @@ functions:
           path: /product/{id}
           method: delete
   listProduct:
-    handler: src/handlers.liustProduct
+    handler: src/handlers.listProduct
     events:
       - httpApi:
           path: /products
