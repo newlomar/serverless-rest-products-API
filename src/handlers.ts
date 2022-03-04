@@ -118,8 +118,25 @@ export const deleteProduct = async (event: APIGatewayProxyEvent): Promise<APIGat
       .promise();
 
     return {
-      statusCode: 200,
+      statusCode: 204,
       body: JSON.stringify({ message: "Product deleted" }),
+    };
+  } catch (e) {
+    return handleError(e);
+  }
+};
+
+export const listProduct = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  try {
+    const output = await docClient
+      .scan({
+        TableName: tableName,
+      })
+      .promise();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(output.Items),
     };
   } catch (e) {
     return handleError(e);
